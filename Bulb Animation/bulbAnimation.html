@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb animation</title>
+
+    <style>
+        #heading {
+            display: flex;
+            width: 300px;
+            height: 70px;
+            margin: auto;
+        }
+
+        #bulb {
+            width: 350px;
+            height: 450px;
+        }
+
+        .bulb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .btn button {
+            font-weight: bold;
+            margin: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: cyan;
+            color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="heading">
+        <h1>ANIMATION IS &nbsp;</h1>
+        <h1 id="state">OFF</h1>
+    </div>
+    <div class="bulb">
+        <img id="bulb" src="images/bulbOff.gif" alt="bulbOff">
+    </div>
+    <div class="btn">
+        <button onclick="startAni()">START ANIMATION</button>
+        <button onclick="stopAni()">STOP ANIMATION</button>
+    </div>
+
+    <!-- javascript -->
+
+    <script>
+        let value, flag = true;
+        function startAni() {
+            if (flag) {
+                flag = false;
+                let temp = document.getElementById('state');
+                temp.style.color = "blue";
+                temp.innerHTML = "ON";
+                value = setInterval(start, 400)
+            }
+        }
+        function start() {
+            let bulb = document.getElementById('bulb');
+            if (bulb.src.match("images/bulbOff.gif")) {
+                bulb.src = "images/bulbOn.gif";
+            }
+            else {
+                bulb.src = "images/bulbOff.gif";
+            }
+        }
+        function stopAni() {
+            clearInterval(value);
+            let bulb = document.getElementById('bulb');
+            bulb.src = "images/bulbOff.gif";
+            let temp = document.getElementById('state');
+            temp.style.color = "black";
+            temp.innerHTML = "OFF";
+            flag = true;
+        }
+    </script>
+</body>
+
+</html>
